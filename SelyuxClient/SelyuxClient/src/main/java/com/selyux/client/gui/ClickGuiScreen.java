@@ -41,6 +41,9 @@ public class ClickGuiScreen extends Screen {
             }
             i++;
         }
+        addDrawableChild(new ThemedButton((width - 140) / 2, height - 34, 140, 20,
+                () -> "PvP Settings", () -> false,
+                () -> this.client.setScreen(new PvpSettingsScreen(this))));
     }
 
     @Override
