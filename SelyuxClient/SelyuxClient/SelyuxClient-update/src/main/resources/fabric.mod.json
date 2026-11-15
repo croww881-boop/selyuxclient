@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "selyuxclient",
+  "version": "${version}",
+  "name": "Selyux Client",
+  "description": "Selyux Client - client utility mod bertema hitam-merah.",
+  "authors": ["Selyux"],
+  "license": "MIT",
+  "icon": "assets/selyuxclient/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.selyux.client.SelyuxClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "recommends": {
+    "sodium": "*",
+    "iris": "*"
+  }
+}
