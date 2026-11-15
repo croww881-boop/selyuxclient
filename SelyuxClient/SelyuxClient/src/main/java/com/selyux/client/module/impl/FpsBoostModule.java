@@ -7,8 +7,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
 import net.minecraft.particle.ParticlesMode;
 
-/** Menurunkan pengaturan grafis berat; nilai awal dikembalikan saat dimatikan. */
+/**
+ * SelyuxClient FPS Boost Module
+ * Menurunkan pengaturan grafis untuk meningkatkan FPS.
+ * Pengaturan awal dikembalikan saat module dimatikan.
+ */
 public class FpsBoostModule extends Module {
+
     private boolean saved;
     private int view;
     private int sim;
@@ -26,6 +31,7 @@ public class FpsBoostModule extends Module {
     protected void onEnable() {
         GameOptions o = MinecraftClient.getInstance().options;
 
+        // Simpan pengaturan awal
         view = o.getViewDistance().getValue();
         sim = o.getSimulationDistance().getValue();
         blend = o.getBiomeBlendRadius().getValue();
@@ -33,8 +39,10 @@ public class FpsBoostModule extends Module {
         shadows = o.getEntityShadows().getValue();
         smooth = o.getAo().getValue();
         particles = o.getParticles().getValue();
+
         saved = true;
 
+        // Terapkan FPS Boost
         o.getViewDistance().setValue(Math.min(view, 8));
         o.getSimulationDistance().setValue(Math.min(sim, 5));
         o.getBiomeBlendRadius().setValue(0);
@@ -50,6 +58,7 @@ public class FpsBoostModule extends Module {
 
         GameOptions o = MinecraftClient.getInstance().options;
 
+        // Pulihkan pengaturan awal
         o.getViewDistance().setValue(view);
         o.getSimulationDistance().setValue(sim);
         o.getBiomeBlendRadius().setValue(blend);
@@ -60,6 +69,4 @@ public class FpsBoostModule extends Module {
 
         saved = false;
     }
-}
-
 }
