@@ -1,10 +1,11 @@
+
 package com.selyux.client.module.impl;
 
 import com.selyux.client.module.Category;
 import com.selyux.client.module.Module;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.GameOptions;
-import net.minecraft.client.option.ParticlesMode;
+import net.minecraft.particle.ParticlesMode;
 
 /** Menurunkan pengaturan grafis berat; nilai awal dikembalikan saat dimatikan. */
 public class FpsBoostModule extends Module {
@@ -24,6 +25,7 @@ public class FpsBoostModule extends Module {
     @Override
     protected void onEnable() {
         GameOptions o = MinecraftClient.getInstance().options;
+
         view = o.getViewDistance().getValue();
         sim = o.getSimulationDistance().getValue();
         blend = o.getBiomeBlendRadius().getValue();
@@ -45,7 +47,9 @@ public class FpsBoostModule extends Module {
     @Override
     protected void onDisable() {
         if (!saved) return;
+
         GameOptions o = MinecraftClient.getInstance().options;
+
         o.getViewDistance().setValue(view);
         o.getSimulationDistance().setValue(sim);
         o.getBiomeBlendRadius().setValue(blend);
@@ -53,6 +57,9 @@ public class FpsBoostModule extends Module {
         o.getEntityShadows().setValue(shadows);
         o.getAo().setValue(smooth);
         o.getParticles().setValue(particles);
+
         saved = false;
     }
+}
+
 }
