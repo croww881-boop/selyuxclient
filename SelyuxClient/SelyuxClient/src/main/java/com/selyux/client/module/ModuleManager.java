@@ -15,6 +15,14 @@ public class ModuleManager {
         register(new SprintModule());
         register(new FullbrightModule());
         register(new ZoomModule());
+        register(new FpsBoostModule());
+
+        register(new PvpModeModule(this));
+        register(new KeystrokesModule());
+        register(new CpsModule());
+        register(new ArmorHudModule());
+        register(new PotionHudModule());
+
         register(new WatermarkModule());
         register(new FpsModule());
         register(new CoordinatesModule());

@@ -1,5 +1,7 @@
 package com.selyux.client;
 
+import com.selyux.client.gui.ClickGuiScreen;
+import com.selyux.client.gui.SelyuxPauseScreen;
 import com.selyux.client.module.ModuleManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -7,6 +9,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.util.Identifier;
@@ -41,7 +44,12 @@ public class SelyuxClient implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (guiKey.wasPressed()) {
-                client.setScreen(new com.selyux.client.gui.ClickGuiScreen());
+                client.setScreen(new ClickGuiScreen());
+            }
+            // Ganti menu ESC bawaan dengan versi bertema Selyux
+            if (client.currentScreen != null
+                    && client.currentScreen.getClass() == GameMenuScreen.class) {
+                client.setScreen(new SelyuxPauseScreen());
             }
             if (client.player != null) {
                 modules.tick(client);
